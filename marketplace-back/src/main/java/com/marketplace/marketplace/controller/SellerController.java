@@ -8,17 +8,18 @@ import com.marketplace.marketplace.repository.SellerRepository;
 import com.marketplace.marketplace.service.SellerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1")
 public class SellerController {
 
     public final SellerService sellerService;
-
     public SellerController(SellerService sellerService){
         this.sellerService = sellerService;
     }
@@ -35,7 +36,7 @@ public class SellerController {
 
     @PostMapping
     public ResponseEntity<Seller> saveSeller(@RequestBody  @Valid SellerRequestDto seller){
-       return ResponseEntity.status(HttpStatus.CREATED).body(sellerService.saveSeller(seller));
+       return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(sellerService.saveSeller(seller));
     }
 
     @PutMapping
@@ -45,7 +46,7 @@ public class SellerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Seller> deleteSeller(@PathVariable(name = "id") Long id){
-        return ResponseEntity.status(HttpStatus.CREATED).body(sellerService.deleteSeller(id));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(sellerService.deleteSeller(id));
     }
 
 }
