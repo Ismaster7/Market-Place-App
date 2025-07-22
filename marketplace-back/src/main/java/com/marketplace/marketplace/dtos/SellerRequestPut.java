@@ -1,7 +1,10 @@
 package com.marketplace.marketplace.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
+import java.util.Date;
 
 public record SellerRequestPut(
 
@@ -12,6 +15,8 @@ public record SellerRequestPut(
         String lastName,
         @Size(min=4, max=160)
 
-        String email
+        String email,
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        Date birthday
 ) {
 }

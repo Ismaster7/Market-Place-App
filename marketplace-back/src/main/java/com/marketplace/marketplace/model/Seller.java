@@ -1,7 +1,10 @@
 package com.marketplace.marketplace.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -18,16 +21,19 @@ public class Seller {
     private String lastName;
     @Column(name="email", nullable = false, length = 120)
     private String email;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date birthday;
 
 
     public Seller() {
     }
 
-    public Seller(Long id, String name, String lastName, String email) {
+    public Seller(Long id, String name, String lastName, String email, Date birthday) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.birthday = birthday;
     }
 
     public Long getId() {
@@ -62,15 +68,23 @@ public class Seller {
         this.email = email;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Seller seller = (Seller) o;
-        return Objects.equals(id, seller.id);
+        return Objects.equals(id, seller.id) && Objects.equals(name, seller.name) && Objects.equals(lastName, seller.lastName) && Objects.equals(email, seller.email) && Objects.equals(birthday, seller.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, name, lastName, email, birthday);
     }
 }
