@@ -9,6 +9,7 @@ import com.marketplace.marketplace.service.SellerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +25,12 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<SellerResponse> getSellers(){
         return sellerService.getSellers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Seller> getSellerById(@PathVariable(name = "id") Long id){
         return ResponseEntity.status(HttpStatus.FOUND).body(sellerService.findSellerById(id));
     }
