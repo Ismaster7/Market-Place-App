@@ -3,6 +3,7 @@ package com.marketplace.marketplace.service;
 import com.marketplace.marketplace.dtos.SellerRequestDto;
 import com.marketplace.marketplace.dtos.SellerRequestPut;
 import com.marketplace.marketplace.dtos.SellerResponse;
+import com.marketplace.marketplace.exception.RequiredObjectIsNull;
 import com.marketplace.marketplace.exception.ResourceNotFound;
 import com.marketplace.marketplace.mapper.SellerMapper;
 import com.marketplace.marketplace.model.Seller;
@@ -37,12 +38,19 @@ public class SellerService {
 
     public Seller saveSeller(SellerRequestDto sellerDto) {
         logger.info("Saving a seller");
+        if(isNull(sellerDto)) throw new RequiredObjectIsNull();
         Seller sellerEntity = sellerMapper.toEntityPost(sellerDto);
-        sellerRepository.save(sellerEntity);
-        return sellerEntity;
+        try {
+            sellerRepository.save(sellerEntity);
+            return sellerEntity;
+        }catch(Exception e){
+            throw new RuntimeException("Error trying to save a new Seller");
+        }
+
     }
 
     public Seller updateSeller(SellerRequestPut sellerPut){
+        if(isNull(sellerPut)) throw new RequiredObjectIsNull();
         Seller seller = sellerMapper.toEntityPut(sellerPut);
         Seller oldSeller = sellerRepository.findById(seller.getId()).orElseThrow(()-> new ResourceNotFound("Seller not found to update"));
 
@@ -64,5 +72,9 @@ public class SellerService {
 
     public Seller getSeller(Long id){
         return sellerRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Seller not found"));
+    }
+
+    public Boolean isNull(Object object){
+      return  object == null ? true : false;
     }
 }

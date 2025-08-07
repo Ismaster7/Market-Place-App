@@ -18,4 +18,12 @@ public class ExceptionHandlers {
         );
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND );
     }
+
+    @ExceptionHandler(RequiredObjectIsNull.class)
+    public ResponseEntity<ExceptionResponse> requiredObjectIsNull(Exception exception, WebRequest request){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                exception.getMessage(), new Date(), request.getDescription(false)
+        );
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }
