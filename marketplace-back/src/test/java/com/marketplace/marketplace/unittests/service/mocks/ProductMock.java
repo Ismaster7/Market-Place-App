@@ -1,4 +1,4 @@
-package com.marketplace.marketplace.mocks;
+package com.marketplace.marketplace.unittests.service.mocks;
 
 import com.marketplace.marketplace.dtos.product.ProductResponse;
 import com.marketplace.marketplace.model.Product;

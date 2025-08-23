@@ -1,11 +1,11 @@
-package com.marketplace.marketplace.service;
+package com.marketplace.marketplace.unittests.service;
 
 import com.marketplace.marketplace.dtos.SellerRequestDto;
 import com.marketplace.marketplace.dtos.SellerRequestPut;
 import com.marketplace.marketplace.dtos.SellerResponse;
 import com.marketplace.marketplace.exception.RequiredObjectIsNull;
 import com.marketplace.marketplace.mapper.SellerMapper;
-import com.marketplace.marketplace.mocks.SellerMock;
+import com.marketplace.marketplace.unittests.service.mocks.SellerMock;
 import com.marketplace.marketplace.model.Seller;
 import com.marketplace.marketplace.repository.SellerRepository;
 import org.junit.jupiter.api.*;

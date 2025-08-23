@@ -1,8 +1,8 @@
-package com.marketplace.marketplace.service;
+package com.marketplace.marketplace.unittests.service;
 
 import com.marketplace.marketplace.dtos.product.ProductResponse;
 import com.marketplace.marketplace.mapper.ProductMapper;
-import com.marketplace.marketplace.mocks.ProductMock;
+import com.marketplace.marketplace.unittests.service.mocks.ProductMock;
 import com.marketplace.marketplace.model.Product;
 import com.marketplace.marketplace.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
