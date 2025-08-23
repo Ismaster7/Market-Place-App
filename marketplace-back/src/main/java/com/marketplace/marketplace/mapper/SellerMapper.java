@@ -1,5 +1,6 @@
 package com.marketplace.marketplace.mapper;
 
+import com.marketplace.marketplace.dtos.SellerDTO;
 import com.marketplace.marketplace.dtos.SellerRequestDto;
 import com.marketplace.marketplace.dtos.SellerRequestPut;
 import com.marketplace.marketplace.dtos.SellerResponse;
@@ -21,4 +22,6 @@ public interface SellerMapper {
     @Mapping(target = "id", ignore = true)
     Seller toEntityPut(SellerRequestPut sellerRequestPut);
     List<SellerResponse> toDtoList(List<Seller> sellers);
+    Seller toEntitySeller(SellerDTO sellerDTO);
+    SellerDTO toDtoSeller(Seller seller);
 }
